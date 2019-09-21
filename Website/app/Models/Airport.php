@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Airport extends Model
 {
     /**
+     * Sets the airport ICAO as its primary key. ID will be used for relationships
+     * 
+     * @var string
+     */
+    protected $primaryKey = 'icao';
+
+    /**
+     * Primary key is now a string so it doesn't increment automatically
+     * 
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
      * Allow all attributes to be mass assigned.
      *
      * @var array
@@ -20,6 +34,6 @@ class Airport extends Model
 
     public function runways()
     {
-        return $this->hasMany(Runway::class);
+        return $this->hasMany(Runway::class, 'airport_id', 'id');
     }
 }

@@ -1,9 +1,11 @@
 // Topbar
 .topbar {
+  background-color: #007bff;
   height: $topbar-base-height;
   #sidebarToggleTop {
     height: 2.5rem;
     width: 2.5rem;
+    color: $white;
     &:hover {
       background-color: $gray-200;
     }

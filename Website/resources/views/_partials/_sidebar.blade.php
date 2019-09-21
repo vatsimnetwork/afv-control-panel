@@ -1,17 +1,18 @@
-<ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
-    <div class="sidebar-brand-icon">
+    <img class="m-2" src="{{ asset('img/logo_white.png') }}" alt="VATSIM">
+    {{--<div class="sidebar-brand-icon">
       <img src="{{ asset('favicon.ico') }}" style="height:30px;">
     </div>
-    <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>
+    <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>--}}
   </a>
 
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
 
   <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
+  <li class="nav-item {{ Request::is('/') ? 'active' : null }}">
     <a class="nav-link" href="{{ route('home') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
@@ -24,8 +25,16 @@
   <div class="sidebar-heading">
     Interface
   </div>
+  
+  <!-- Nav Item - Airports -->
+  <li class="nav-item {{ Request::is('airports*') ? 'active' : null }}">
+    <a class="nav-link" href="{{ route('airports.index') }}">
+      <i class="fas fa-fw fa-plane-departure"></i>
+      <span>Airports</span>
+    </a>
+  </li>
 
-  <!-- Nav Item - Pages Collapse Menu -->
+  {{--<!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
@@ -97,7 +106,7 @@
     <a class="nav-link" href="#">
       <i class="fas fa-fw fa-table"></i>
       <span>Tables</span></a>
-  </li>
+  </li>--}}
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

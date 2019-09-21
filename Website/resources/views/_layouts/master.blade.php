@@ -50,6 +50,7 @@
       <i class="fas fa-angle-up"></i>
     </a>
   
+    @section('modals')
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -68,6 +69,7 @@
         </div>
       </div>
     </div>
+    @show
   
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
@@ -85,6 +87,40 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+
+    @if(session()->has("error") || session()->has("success") || session()->has("warn"))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    @if(session()->has("error"))
+    <script language="javascript">
+        Swal.fire({
+            title: "<b>{{ session('error')[0] }}</b>",
+            html: "{{ session('error')[1] }}",
+            type: 'error'
+        })
+    </script>
+    @endif
+    @if(session()->has("warn"))
+    <script language="javascript">
+        Swal.fire({
+            title: "<b>{{ session('warn')[0] }}</b>",
+            html: "{{ session('warn')[1] }}",
+            type: 'warning'
+        })
+    </script>
+    @endif
+    @if(session()->has("success"))
+    <script language="javascript">
+        Swal.fire({
+            title: "<b>{{ session('success')[0] }}</b>",
+            html: "{{ session('success')[1] }}",
+            type: 'success'
+        })
+    </script>
+    @endif
+    @endif
   
   </body>
 

@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'HomepageController')->name('home');
+Route::resource('airports', 'AirportController');
+Route::resource('airports.runways', 'AirportController');
