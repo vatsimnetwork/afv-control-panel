@@ -61,11 +61,9 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
       <h6 class="m-0 font-weight-bold">Runways</h6>
-      <div class="dropdown no-arrow">
-        <form class="d-none d-sm-inline-block" action="{{ route('airports.runways.index', ['airport' => $airport]) }}" method="GET">
-          <button class="btn btn-sm btn-primary shadow-sm" action="submit">Details</button>
-        </form>
-      </div>
+      <form class="dropdown no-arrow" action="{{ route('airports.runways.create', ['airport' => $airport]) }}" method="GET">
+        <button action="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Add New</button>
+      </form>
     </div>
     <div class="card-body">
       <div class="table-responsive">
