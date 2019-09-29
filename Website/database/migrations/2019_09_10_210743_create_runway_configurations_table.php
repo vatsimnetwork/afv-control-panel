@@ -23,7 +23,10 @@ class CreateRunwayConfigurationsTable extends Migration
             $table->unsignedTinyInteger('max_crosswind')->nullable();
             $table->timestamps();
 
-            $table->foreign('runway_id')->references('id')->on('runways')->onDelete('cascade');
+            $table->foreign('runway_id')
+                  ->references('id')
+                  ->on('runways')
+                  ->onDelete('cascade');
         });
     }
 

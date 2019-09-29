@@ -1,10 +1,11 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAirportUserTable extends Migration
+class EnableFkConstraints extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +14,7 @@ class CreateAirportUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('airport_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('airport_id');
-            $table->unsignedBigInteger('user_id');
-        });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -26,6 +24,6 @@ class CreateAirportUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('airport_user');
+        Schema::disableForeignKeyConstraints();
     }
 }

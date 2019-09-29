@@ -15,12 +15,21 @@ class CreateRunwaysTable extends Migration
     {
         Schema::create('runways', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('airport_id');
+            $table->string('airport_icao', 4);
             $table->string('designator', 3);
             $table->unsignedSmallInteger('heading');
             $table->timestamps();
             
-            $table->foreign('airport_id')->references('id')->on('airports')->onDelete('cascade');
+            $table->foreign('airport_icao')
+                  ->references('icao')
+                  ->on('airports')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+
+            $table->unique([
+                'designator',
+                'airport_icao',
+            ]);
         });
     }
 

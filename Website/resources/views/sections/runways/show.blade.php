@@ -13,7 +13,7 @@
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
       <h6 class="m-0 font-weight-bold">Details</h6>
       <div class="dropdown no-arrow">
-        <form class="d-none d-sm-inline-block" action="{{ route('airports.edit', ['airport' => $airport]) }}" method="GET">
+        <form class="d-none d-sm-inline-block" action="{{ route('airports.runways.edit', ['airport' => $runway->airport, 'runway' => $runway]) }}" method="GET">
           <button class="btn btn-sm btn-warning shadow-sm" action="submit"><i class="fas fa-pen fa-sm text-white-50"></i> Edit</button>
         </form>
         <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteConfirmation"><i class="fas fa-times-circle fa-sm text-white-50"></i> Delete</button>
@@ -25,11 +25,11 @@
           <div class="table-responsive">
             <table class="table table-bordered mb-2 mb-md-0">
               <tr>
-                <th>ICAO</th>
+                <th>Designator</th>
               </tr>
               <tr>
                 <td>
-                  <div type="text" class="text-center text-uppercase">{{ $airport->icao }}</div>
+                  <div type="text" class="text-center text-uppercase">{{ $runway->designator }}</div>
                 </td>
               </tr>
             </table>
@@ -41,11 +41,11 @@
           <div class="table-responsive">
             <table class="table table-bordered mb-0">
               <tr>
-                <th>Name</th>
+                <th>Heading</th>
               </tr>
               <tr>
                 <td>
-                  <div type="text" class="text-center">{{ $airport->name }}</div>
+                  <div type="text" class="text-center">{{ $runway->heading }}</div>
                 </td>
               </tr>
             </table>
@@ -58,9 +58,9 @@
     </div>
   </div>
 
-  <div class="card shadow mb-4">
+  {{--<div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold">Runways</h6>
+      <h6 class="m-0 font-weight-bold">Configurations</h6>
       <form class="dropdown no-arrow" action="{{ route('airports.runways.create', ['airport' => $airport]) }}" method="GET">
         <button action="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Add New</button>
       </form>
@@ -72,34 +72,26 @@
             <tr>
               <th>Designator</th>
               <th>Heading</th>
-              <th></th>
             </tr>
           </thead>
           @if($airport->runways()->exists())
           <tbody>
-            @foreach($airport->runways()->cursor() as $runway)
             <tr>
-              <td class="align-middle">{{ $runway->designator }}</td>
-              <td class="align-middle">{{ $runway->heading }}</td>
-              <td class="align-middle">
-                <form action="{{ route('airports.runways.show', ['airport' => $airport, 'runway' => $runway]) }}" method="GET">
-                  <button class="btn btn-sm btn-outline-primary shadow-sm" action="submit">View</button>
-                </form>
-              </td>
+              <td class="align-middle">{{ $airport->icao }}</td>
+              <td class="align-middle">{{ $airport->name }}</td>
             </tr>
-            @endforeach
           </tbody>
           @else
           <tbody>
             <tr>
-              <td colspan="3" class="align-middle">No runways found</td>
+              <td colspan="2" class="align-middle">No runways found</td>
             </tr>
           </tbody>
           @endif
         </table>
       </div>
     </div>
-  </div>
+  </div>--}}
 </div>
 <!-- /.container-fluid -->
 @endsection
@@ -108,7 +100,7 @@
 @section('modals')
   @parent
   <!-- Delete Modal-->
-  <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmation" aria-hidden="true">
+  {{--<div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmation" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -128,5 +120,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>--}}
 @endsection

@@ -14,7 +14,7 @@ class Airport extends Model
     protected $primaryKey = 'icao';
 
     /**
-     * Primary key is now a string so it doesn't increment automatically
+     * Primary key is now a string so it doesn't increment automatically.
      * 
      * @var bool
      */
@@ -34,6 +34,6 @@ class Airport extends Model
 
     public function runways()
     {
-        return $this->hasMany(Runway::class, 'airport_id', 'id');
+        return $this->hasMany(Runway::class);
     }
 }
