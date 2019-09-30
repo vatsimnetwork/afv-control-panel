@@ -9,9 +9,13 @@
 
 @section('content')
 <div class="container-fluid">
-  <div class="card shadow mb-4">
+  <div class="card shadow mb-3">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold">Details</h6>
+      <ol class="breadcrumb m-0 py-2 pl-0 bg-light">
+        <li class="breadcrumb-item"><a href="{{ route('airports.index') }}">Airports</a></li>
+        <li class="breadcrumb-item active"><b>{{ $airport->icao }}</b></li>
+      </ol>
+      {{--<h6 class="m-0 font-weight-bold">Details</h6>--}}
       <div class="dropdown no-arrow">
         <form class="d-none d-sm-inline-block" action="{{ route('airports.edit', ['airport' => $airport]) }}" method="GET">
           <button class="btn btn-sm btn-warning shadow-sm" action="submit"><i class="fas fa-pen fa-sm text-white-50"></i> Edit</button>

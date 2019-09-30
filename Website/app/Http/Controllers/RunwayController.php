@@ -17,7 +17,7 @@ class RunwayController extends Controller
     public function index(Airport $airport)
     {
         $runways = $airport->runways(); // A.K.A. All
-        return view('sections.runways.index', compact('runways'));
+        return view('sections.runways.index', compact('airport', 'runways'));
     }
 
     /**
@@ -28,7 +28,7 @@ class RunwayController extends Controller
      */
     public function create(Airport $airport)
     {
-        //
+        return view('sections.runways.create', compact('airport'));
     }
 
     /**
@@ -47,14 +47,14 @@ class RunwayController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Airport  $airport
-     * @param  \App\Models\Runway  $runway
+     * @param  $runway
      * @return \Illuminate\Http\Response
      */
-    public function show(Airport $airport, Runway $runway)
+    public function show(Airport $airport, $runway)
     {
-        $runway = $airport->runways->find($runway);
-        
-        return view('sections.runways.show', compact('runway'));
+        $runway = $airport->runways()->where('designator', $runway)->firstOrFail();
+
+        return view('sections.runways.show', compact('airport', 'runway'));
     }
 
     /**
@@ -64,9 +64,11 @@ class RunwayController extends Controller
      * @param  \App\Models\Runway  $runway
      * @return \Illuminate\Http\Response
      */
-    public function edit(Airport $airport, Runway $runway)
+    public function edit(Airport $airport, $runway)
     {
-        //
+        $runway = $airport->runways()->where('designator', $runway)->firstOrFail();
+
+        return view('sections.runways.edit', compact('airport', 'runway'));
     }
 
     /**

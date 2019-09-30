@@ -11,8 +11,12 @@
 <div class="container-fluid">
   <div class="card shadow">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold">Airports</h6>
-      <form class="dropdown no-arrow" action="{{ route('airports.create') }}" method="GET">
+      <ol class="breadcrumb m-0 py-2 pl-0 bg-light">
+        <li class="breadcrumb-item"><a href="{{ route('airports.index') }}">Airports</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('airports.show', ['airport' => $airport]) }}">{{ $airport->icao }}</a></li>
+        <li class="breadcrumb-item active"><b>Runways</b></li>
+      </ol>
+      <form class="dropdown no-arrow" action="{{ route('airports.runways.create', ['airport' => $airport]) }}" method="GET">
         <button action="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Add New</button>
       </form>
     </div>
@@ -21,19 +25,19 @@
         <table class="table table-bordered text-center my-auto w-100" id="dataTable" cellspacing="0">
           <thead>
             <tr>
-              <th>ICAO</th>
-              <th>Name</th>
+              <th>Designator</th>
+              <th>Heading</th>
               <th></th>
             </tr>
           </thead>
-          @if($runways->exists())
+          @if($airport->runways()->exists())
           <tbody>
-            @foreach($runways->get() as $runway)
+            @foreach($airport->runways()->cursor() as $runway)
             <tr>
               <td class="align-middle text-uppercase">{{ $runway->designator }}</td>
               <td class="align-middle">{{ $runway->heading }}</td>
               <td class="align-middle">
-                <form action="{{ route('airports.runways.show', ['airport' => $runway->airport, 'runway' => $runway]) }}" method="GET">
+                <form action="{{ route('airports.runways.show', ['airport' => $airport, 'runway' => $runway]) }}" method="GET">
                   <button class="btn btn-sm btn-outline-primary shadow-sm" action="submit">View</button>
                 </form>
               </td>
@@ -43,7 +47,7 @@
           @else
           <tbody>
             <tr>
-              <td colspan="3" class="align-middle">No airports found</td>
+              <td colspan="3" class="align-middle">No runways found</td>
             </tr>
           </tbody>
           @endif

@@ -11,7 +11,9 @@
 <div class="container-fluid">
   <div class="card shadow">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold">Airports</h6>
+      <ol class="breadcrumb m-0 py-2 pl-0 bg-light">
+        <li class="breadcrumb-item active"><b>Airports</b></li>
+      </ol>
       <form class="dropdown no-arrow" action="{{ route('airports.create') }}" method="GET">
         <button action="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Add New</button>
       </form>
