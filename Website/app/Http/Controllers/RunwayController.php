@@ -29,6 +29,7 @@ class RunwayController extends Controller
     public function create(Airport $airport)
     {
         return view('sections.runways.create', compact('airport'));
+        // test
     }
 
     /**
