@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RunwayConfiguration extends Model
+class RunwayActiveCondition extends Model
 {
     /**
      * Allow all attributes to be mass assigned.

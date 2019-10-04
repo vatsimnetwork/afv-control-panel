@@ -32,7 +32,7 @@
           </thead>
           @if($airport->runways()->exists())
           <tbody>
-            @foreach($airport->runways()->cursor() as $runway)
+            @foreach($airport->runways->sortBy('designator') as $runway)
             <tr>
               <td class="align-middle text-uppercase">{{ $runway->designator }}</td>
               <td class="align-middle">{{ $runway->heading }}</td>

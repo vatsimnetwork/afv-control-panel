@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRunwayConfigurationsTable extends Migration
+class CreateRunwayActiveConditionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRunwayConfigurationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('runway_configurations', function (Blueprint $table) {
+        Schema::create('runway_active_conditions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('runway_id');
             $table->unsignedTinyInteger('type'); // Dep/Arr/Both
@@ -37,6 +37,6 @@ class CreateRunwayConfigurationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('runway_configurations');
+        Schema::dropIfExists('runway_active_conditions');
     }
 }

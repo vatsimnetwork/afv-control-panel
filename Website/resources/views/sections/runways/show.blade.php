@@ -26,8 +26,8 @@
     </div>
     <div class="card-body">
       <div class="row text-center">
-        <div class="col-12 col-md-3 mx-auto mr-md-0 px-auto pr-md-0">
-          <div class="table-responsive">
+        <div class="col-12 col-md-6 mx-auto mr-md-0 px-auto pr-md-0">
+          <div class="table-responsive rounded">
             <table class="table table-bordered mb-2 mb-md-0">
               <tr>
                 <th>Designator</th>
@@ -42,8 +42,8 @@
           <!-- /.table-responsive -->
         </div>
         <!-- /.col -->
-        <div class="col-12 col-md-9 mx-auto ml-md-0 px-auto pl-md-0">
-          <div class="table-responsive">
+        <div class="col-12 col-md-6 mx-auto ml-md-0 px-auto pl-md-0">
+          <div class="table-responsive rounded">
             <table class="table table-bordered mb-0">
               <tr>
                 <th>Heading</th>
@@ -60,6 +60,55 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+
+      <div class="card mt-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold">Active Conditions</h6>
+          <form class="dropdown no-arrow" action="{{ route('airports.runways.create', ['airport' => $airport]) }}" method="GET">
+            <button action="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Add New</button>
+          </form>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered text-center my-auto w-100" id="dataTable" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Condition</th>
+                  <th></th>
+                </tr>
+              </thead>
+              @if($runway->activeConditions()->exists())
+              <tbody>
+                @foreach($runway->activeConditions->sortBy('from') as $condition)
+                <tr>
+                  {{-- Shows in a human-readable format the conditions under which the runway is considered as 'active' --}}
+                  {{-- From {start} to {end} [if [Tailwind less than {tailwind}Kts [and]] [Crosswind less than {crosswind}Kts]] --}}
+                  <td class="align-middle">
+                    From {{ substr($condition->from, 0, 5) }} to {{ substr($condition->to, 0, 5) }}z
+                    {{ ($condition->max_tailwind || $condition->max_crosswind) ? ' if ' : null }}
+                    {{ ($condition->max_tailwind) ? 'Tailwind is less than '.$condition->max_tailwind.'Kts' : null }}
+                    {{ ($condition->max_tailwind && $condition->max_crosswind) ? ' and ' : null }}
+                    {{ ($condition->max_crosswind) ? 'Crosswind is less than '.$condition->max_crosswind.'Kts' : null }}
+                  </td>
+                  <td class="align-middle">
+                    <form action="{{ route('airports.runways.show', ['airport' => $airport, 'runway' => $runway]) }}" method="GET">
+                      <button class="btn btn-sm btn-outline-primary shadow-sm" action="submit">View</button>
+                    </form>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+              @else
+              <tbody>
+                <tr>
+                  <td colspan="3" class="align-middle">No runways found</td>
+                </tr>
+              </tbody>
+              @endif
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

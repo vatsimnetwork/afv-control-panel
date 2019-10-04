@@ -32,4 +32,9 @@ class Runway extends Model
     {
         return $this->belongsTo(Airport::class);
     }
+
+    public function activeConditions()
+    {
+        return $this->hasMany(RunwayActiveCondition::class, 'runway_id', 'id');
+    }
 }
