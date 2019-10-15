@@ -19287,8 +19287,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/calumtowers/Code/vatsim-atis/Website/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/calumtowers/Code/vatsim-atis/Website/resources/sass/sb-admin-2.scss */"./resources/sass/sb-admin-2.scss");
+__webpack_require__(/*! /Users/calumtowers/Code/vatsim-atis/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/calumtowers/Code/vatsim-atis/resources/sass/sb-admin-2.scss */"./resources/sass/sb-admin-2.scss");
 
 
 /***/ })
