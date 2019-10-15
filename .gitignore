@@ -1,4 +1,3 @@
-/.idea
 /node_modules
 /public/hot
 /public/storage
@@ -6,10 +5,19 @@
 /public/css/*
 /storage/*.key
 /vendor
-.env
-.env.backup
-.phpunit.result.cache
+/.idea
+/.vscode
+/.vagrant
+/laradock
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.env
+.env.testing
+.phpunit.result.cache
+
+_ide_helper.php
+.phpstorm.meta.php
+/build
+.gitmodules
