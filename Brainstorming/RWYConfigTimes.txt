@@ -1,5 +1,0 @@
-// From input (Saving to DB)
-$carbon = \Carbon\Carbon::createFromTime($hour, $minute, 00, 'GMT-0');
-        
-// From a time string (Retrieving from DB)
-$time = new Carbon('11:53:20');
