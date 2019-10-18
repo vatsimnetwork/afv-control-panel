@@ -1,22 +1,21 @@
 <?php
 
+use League\Csv\Reader;
 use App\Models\Airport;
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
-class AirportSeeder extends CsvSeeder
+class AirportSeeder extends Seeder
 {
+
+    protected $csv;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-		$this->table = 'airports';
-        $this->filename = base_path().'/database/seeds/csvs/airports.csv';
-        $this->mapping = [
-            12 => 'icao',
-            3 => 'name',
-        ];
+        $this->csv = Reader::createFromPath(base_path().'/database/seeds/csvs/airports.csv')->setHeaderOffset(0);
     }
 
     /**
@@ -26,19 +25,18 @@ class AirportSeeder extends CsvSeeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-        Airport::truncate(); // Wipes the current contents
-        Schema::enableForeignKeyConstraints();
-
-        parent::run(); // Seed table
-
-        // Set updated_at/created_at datetimes
-        Airport::where('created_at', null)
-               ->orWhere('updated_at', null)
-               ->update([
-                   'created_at' => now(),
-                   'updated_at' => now(),
-               ]);
+        foreach ($this->csv as $airport) {
+            if (
+            $airport['ident'] != '' &&
+            strlen($airport['ident']) <= 4 &&
+            $airport['name'] != ''
+            ) {
+                Airport::create([
+                    'icao' => $airport['ident'],
+                    'name' => $airport['name'],
+                ]);
+            }
+        }
 
         echo Airport::count() . ' airports added'.PHP_EOL;
     }
