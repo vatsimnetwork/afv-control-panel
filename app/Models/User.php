@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'id', 'first_name', 'last_name',
     ];
 
     /**
@@ -34,6 +34,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
     ];
+
+
+    /**
+     * Gets the airports the user has permission to edit
+     */
+    public function airports()
+    {
+        if ($this->admin) {
+            return Airport::whereNotNull('icao');
+        } else {
+            return $this->belongsToMany(Airport::class);
+        }
+    }
 }

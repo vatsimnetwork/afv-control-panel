@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamp('last_login');
             $table->timestamps();

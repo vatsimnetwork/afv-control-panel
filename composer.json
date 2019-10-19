@@ -13,7 +13,7 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "league/csv": "^9.4",
-        "safran-cassiopee/php-metar-decoder": "^0.7.0"
+        "vatsim/sso": "3.*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
