@@ -36,4 +36,9 @@ class Airport extends Model
     {
         return $this->hasMany(Runway::class);
     }
+
+    public function rwy_configs()
+    {
+        return $this->hasMany(RwyConfigs\RwyConfig::class);
+    }
 }

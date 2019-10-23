@@ -43,10 +43,13 @@ class User extends Authenticatable
      */
     public function airports()
     {
-        if ($this->admin) {
+        return $this->belongsToMany(Airport::class);
+
+        // To-Do: Look at a way of making this bodge work nicely everywhere
+        /*if ($this->admin) {
             return Airport::whereNotNull('icao');
         } else {
             return $this->belongsToMany(Airport::class);
-        }
+        /*}*/
     }
 }

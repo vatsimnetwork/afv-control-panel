@@ -14,7 +14,6 @@ class CreateRwyConfigRwyTable extends Migration
     public function up()
     {
         Schema::create('rwy_config_rwy', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedBigInteger('rwy_config_id');
             $table->unsignedBigInteger('rwy_id');
 

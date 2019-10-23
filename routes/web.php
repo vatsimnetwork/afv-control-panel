@@ -29,3 +29,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('airports', 'AirportController');
     Route::resource('airports.runways', 'RunwayController');
 });
+
+Route::get('demo', function(){
+    echo "Airport::find('LEMD')->rwy_configs()->first()  [ RwyConfigs\\RwyConfig::class ]";
+    dump(\App\Models\Airport::find('LEMD')->rwy_configs()->first());
+
+    echo "Airport::find('LEMD')->rwy_configs()->first()->valid_dates()->first()  [ RwyConfigs\\RwyConfigDatetime::class ]";
+    dump(\App\Models\Airport::find('LEMD')->rwy_configs()->first()->valid_dates()->first());
+
+    echo "Airport::find('LEMD')->rwy_configs()->first()->active_times()->first()  [ RwyConfigs\\RwyConfigTime::class ]";
+    dump(\App\Models\Airport::find('LEMD')->rwy_configs()->first()->active_times()->first());
+
+    echo "Airport::find('LEMD')->rwy_configs()->first()->runways()->first()  [ Runway::class ]";
+    dump(\App\Models\Airport::find('LEMD')->rwy_configs()->first()->runways()->first());
+});
