@@ -28,5 +28,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/', 'HomepageController')->name('home');
     Route::resource('airports', 'AirportController');
     Route::resource('airports.runways', 'RunwayController');
-    Route::resource('runways', 'RunwayController');
 });

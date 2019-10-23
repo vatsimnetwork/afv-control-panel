@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Runway extends Model
 {
     /**
-     * Sets the airport ICAO as its primary key. ID will be used for relationships.
+     * Airport ICAO + RWY Designator = Unique runway. ID will be used for relationships.
      * 
      * @var string
      */
@@ -21,7 +21,7 @@ class Runway extends Model
     public $incrementing = false;
 
     /**
-     * Allow all attributes to be mass assigned.
+     * Prevent attributes from being mass assigned.
      * ID should NOT be touched by the application in any moment.
      *
      * @var array
@@ -31,10 +31,5 @@ class Runway extends Model
     public function airport()
     {
         return $this->belongsTo(Airport::class);
-    }
-
-    public function activeConditions()
-    {
-        return $this->hasMany(RunwayActiveCondition::class, 'runway_id', 'id');
-    }
+    }   
 }
