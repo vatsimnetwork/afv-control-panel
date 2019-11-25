@@ -27,9 +27,11 @@ class CreateRunwaysTable extends Migration
                   ->onDelete('cascade');
 
             $table->unique([
-                'designator',
                 'airport_icao',
+                'designator',
             ]);
+
+            $table->index('airport_icao');
         });
     }
 

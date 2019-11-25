@@ -23,6 +23,8 @@ class CreateRwyConfigTimesTable extends Migration
                   ->references('id')
                   ->on('rwy_configs')
                   ->onDelete('cascade');
+
+            $table->index('rwy_config_id');
         });
     }
 

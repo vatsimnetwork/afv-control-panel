@@ -34,6 +34,8 @@ class CreateRwyConfigRwyConfigTable extends Migration
                 'rwy_config_id',
                 'rwy_config_id_active',
             ]);
+
+            $table->index('rwy_config_id');
         });
     }
 

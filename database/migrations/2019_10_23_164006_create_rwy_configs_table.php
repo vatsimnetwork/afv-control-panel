@@ -29,6 +29,8 @@ class CreateRwyConfigsTable extends Migration
                   ->on('airports')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
+
+            $table->index('airport_icao');
         });
     }
 
