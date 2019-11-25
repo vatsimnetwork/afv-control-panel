@@ -38,7 +38,7 @@ class AirportController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'icao' => 'required|alpha|size:4|unique:airports',
+            'icao' => 'required|alpha_num|min:3|max:4|unique:airports',
             'name' => 'required|string|max:255',
         ]);
 
@@ -84,8 +84,9 @@ class AirportController extends Controller
         $request->validate([
             'icao' => [
                 'required',
-                'alpha',
-                'size:4',
+                'alpha_num',
+                'min:3',
+                'max:4',
                 Rule::unique('airports')->ignore($airport),
             ],
             'name' => 'required|string|max:255',

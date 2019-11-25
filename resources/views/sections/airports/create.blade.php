@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <input type="text" class="form-control @error('icao') is-invalid @enderror text-center text-uppercase" name="icao" placeholder="ICAO" value="{{ old('icao') ?? null }}" minlength="4" maxlength="4" size="4" required>
+                    <input type="text" class="form-control @error('icao') is-invalid @enderror text-center text-uppercase" name="icao" placeholder="ICAO" value="{{ old('icao') ?? null }}" minlength="3" maxlength="4" size="4" required>
                   </td>
                 </tr>
               </table>
